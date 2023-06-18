@@ -1,0 +1,20 @@
+<section class=" flex section section--details section--bg" data-bg="img/section/details.jpg">
+    <div
+        class="flex flex-column align-items-center text-center mb-3 col-12 md:col-3 card m-3 p-30 border-1 surface-border">
+        <div class="text-2xl font-bold">{{ movie.title }}</div>
+        <img [src]="movie.poster" [alt]="movie.plot" width="200" class="shadow-2 my-3 mx-0" />
+        <p-rating [(ngModel)]="movie.imdbRating" [stars]="10" [readonly]="true" [cancel]="false"></p-rating>
+        <a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="card__trailer">
+            <i class="icon ion-ios-play-circle"></i> Watch trailer
+        </a>
+    </div>
+    <ul class="detail-info">
+        <li><span class="info-name"><b>Director:</b></span> {{ movie.director }}</li>
+        <li><span class="info-name"><b>Cast:</b></span>{{ movie.actors }}</li>
+        <li><span class="info-name"><b>Genre:</b></span> {{ movie.genre }}</li>
+        <li><span class="info-name"><b>Release year:</b></span> {{ movie.year }}</li>
+        <li><span class="info-name"><b>Running time:</b></span> {{ movie.runtime }}</li>
+        <li><span class="info-name"><b>Country:</b></span> {{ movie.country }}</li>
+        <li><div>{{ movie.plot }}</div></li>
+    </ul>
+</section>

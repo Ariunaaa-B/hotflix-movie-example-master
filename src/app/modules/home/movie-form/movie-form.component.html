@@ -1,0 +1,20 @@
+<div class="p-fluid">
+  <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+    <div class="grid col-12">
+      <div class="md:col-6 p-field" *ngFor="let controlName of controlNames">
+        <label for="{{ controlName }}">{{ controlName }}</label>
+        <input
+          id="{{ controlName }}"
+          type="text"
+          pInputText
+          formControlName="{{ controlName }}"
+        />
+      </div>
+    </div>
+    <p-button
+      class="p-button-success border-round-lg w-full"
+      type="submit"
+      label="Submit"
+    ></p-button>
+  </form>
+</div>

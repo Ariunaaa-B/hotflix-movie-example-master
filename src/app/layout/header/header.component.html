@@ -1,0 +1,27 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img
+      src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+      height="40"
+      class="mr-2"
+    />
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p-dropdown
+      [options]="sortOptions"
+      placeholder="Sort By Rating"
+      (onChange)="onSortChange($event)"
+    ></p-dropdown>
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="search"
+        pInputText
+        [(ngModel)]="searchInput"
+        placeholder="Search by Name"
+        (input)="onFilter($event)"
+      />
+    </span>
+    <!-- <input type="search" pInputText placeholder="Search by Name" /> -->
+  </ng-template>
+</p-menubar>

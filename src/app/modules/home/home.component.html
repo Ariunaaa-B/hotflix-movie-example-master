@@ -1,0 +1,24 @@
+<div class="">
+  <div class="card-wrap">
+    <p-virtualScroller [value]="virtualMovies" class="border-1 surface-border border-round" [lazy]="true"
+      (onLazyLoad)="loadMoviesLazy($event)" [style]="{'width': '100%'}" scrollHeight="500px" [itemSize]="150">
+      <ng-template let-movie let-index="index" pTemplate="item">
+        <div class="grid" *ngIf="virtualMovies.indexOf(movie)%4==0">
+          {{index}}
+
+          <div class="col-3">
+            <app-movie-card [movie]="movie" [index] = virtualMovies.indexOf(movie)></app-movie-card>
+          </div>
+          <div class="col-3">
+            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+1]"></app-movie-card>
+          </div>
+          <div class="col-3">
+            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+2]"></app-movie-card>
+          </div>
+          <div class="col-3">
+            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+3]"></app-movie-card>
+          </div>
+        </div>
+      </ng-template>
+    </p-virtualScroller>
+  </div>
