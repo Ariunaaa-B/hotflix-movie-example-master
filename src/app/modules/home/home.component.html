@@ -1,24 +1,54 @@
-<div class="">
-  <div class="card-wrap">
-    <p-virtualScroller [value]="virtualMovies" class="border-1 surface-border border-round" [lazy]="true"
-      (onLazyLoad)="loadMoviesLazy($event)" [style]="{'width': '100%'}" scrollHeight="500px" [itemSize]="150">
-      <ng-template let-movie let-index="index" pTemplate="item">
-        <div class="grid" *ngIf="virtualMovies.indexOf(movie)%4==0">
-          {{index}}
-
-          <div class="col-3">
-            <app-movie-card [movie]="movie" [index] = virtualMovies.indexOf(movie)></app-movie-card>
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <p-dataView
+        #dataView
+        [value]="movies"
+        [lazy]="true"
+        [paginator]="true"
+        [rowsPerPageOptions]="[4, 8, 12, 16, 20]"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        filterBy="Title"
+        [sortField]="sortField"
+        [sortOrder]="sortOrder"
+        layout="grid"
+        (onPage)="next($event)"
+      >
+        <ng-template let-movie pTemplate="gridItem">
+          <div class="col-12 md:col-3">
+            <div class="card m-3 border-1 surface-border">
+              <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                <div class="flex align-items-center">
+                  <!-- <i class="pi pi-tag mr-2"></i> -->
+                  <span class="font-semibold genre-edit">{{ movie.genre }} <i class="pi pi-pencil" [routerLink]="['./edit/', movie.id]"></i>
+                  </span>
+                </div>
+                <!-- <span>{{ movie.Year }}</span> -->
+              </div>
+              <div class="flex flex-column align-items-center text-center mb-3">
+                <img
+                  [src]="movie.poster"
+                  [alt]="movie.plot"
+                  width="200"
+                  class="shadow-2 my-3 mx-0" [routerLink]="['./', movie.id]"
+                />
+                <div class="text-2xl font-bold">{{ movie.title }}</div>
+                <div class="mb-3">{{ movie.year }}</div>
+                <p-rating
+                  [(ngModel)]="movie.imdbRating"
+                  [stars]="10"
+                  [readonly]="true"
+                  [cancel]="false"
+                ></p-rating>
+              </div>
+              <!-- <div class="flex align-items-center justify-content-between">
+                <span class="text-2xl"></span>
+              </div> -->
+            </div>
           </div>
-          <div class="col-3">
-            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+1]"></app-movie-card>
-          </div>
-          <div class="col-3">
-            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+2]"></app-movie-card>
-          </div>
-          <div class="col-3">
-            <app-movie-card [movie]="virtualMovies[virtualMovies.indexOf(movie)+3]"></app-movie-card>
-          </div>
-        </div>
-      </ng-template>
-    </p-virtualScroller>
+        </ng-template>
+      </p-dataView>
+    </div>
   </div>
+</div>

@@ -18,7 +18,7 @@ export interface MovieState {
 export class MovieService {
   private _movieState = new BehaviorSubject<MovieState>({
     page: 0,
-    rows: 50,
+    rows: 4,
     sortField: 'imdbRating',
     sortOrder: 1,
   });

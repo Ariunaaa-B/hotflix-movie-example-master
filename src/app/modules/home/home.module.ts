@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieService } from 'src/app/core/movie.services';
 import { MovieFormComponent } from './movie-form/movie-form.component';
 import { DetailComponent } from './detail/detail.component';
-import { MovieCardComponent } from 'src/app/layout/movie-card/movie-card.component';
 
 export const MovieFormResolver: ResolveFn<any> = (route) => {
   const id = route.paramMap.get('id'); // Assuming 'id' is the name of the route parameter
@@ -59,7 +58,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeComponent, MovieFormComponent, DetailComponent, MovieCardComponent],
+  declarations: [HomeComponent, MovieFormComponent, DetailComponent],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class HomeModule { }
